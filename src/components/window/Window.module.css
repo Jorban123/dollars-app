@@ -1,0 +1,17 @@
+.window{
+    width: 800px;
+    min-height: 400px;
+    margin: 70px auto;
+    background-color: #fff;
+    border: 1px solid grey;
+    border-radius: 3%;
+    text-align: center;
+}
+
+.button{
+    margin-top: 40px;
+}
+
+.error{
+    color: red;
+}

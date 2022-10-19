@@ -6,10 +6,25 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import AdbIcon from '@mui/icons-material/Adb';
+import styles from './header.module.css'
+import { Link, useNavigate } from 'react-router-dom'
+const pages = [
+  {
+    title: 'Конвертер',
+    link: '/'
+  },
+  {
+    title: 'Текущие курсы валют',
+    link: '/kek',
+  }
+];
 
-const pages = ['Конвертер', 'Текущие курсы валют'];
-
-const ResponsiveAppBar: React.FC = () => {
+const Header: React.FC = () => {
+  const navigate = useNavigate()
+  function onClickButton({id}: any){
+    console.log(id);
+    navigate(id)
+  }
 
   return (
     <AppBar position="static">
@@ -35,11 +50,12 @@ const ResponsiveAppBar: React.FC = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button className=''
-                key={page}
+              <Button className={styles.button}
+                key={page.title}
                 sx={{ my: 2, color: 'white', display: 'block' }}
+                onClick={() => onClickButton({id: page.link})}
               >
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>
@@ -48,5 +64,5 @@ const ResponsiveAppBar: React.FC = () => {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+export default Header;
 
