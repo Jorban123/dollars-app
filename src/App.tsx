@@ -1,16 +1,19 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/header/Header'
-import Window from './components/window/Window';
+import Converter from './components/converter/Converter';
+import Currency from './components/currency/Currency';
+
 const App: React.FC = () => {
   return (
     <div className="App">
       <Header/>
 
-        <Routes>
-          <Route path="/" element={<Window title='Конвертер валют' />} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Converter title='Конвертер валют' />} />
+        <Route path="/currency" element={<Currency/>} />
+      </Routes>
     </div>
   );
 }

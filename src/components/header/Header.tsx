@@ -15,7 +15,7 @@ const pages = [
   },
   {
     title: 'Текущие курсы валют',
-    link: '/kek',
+    link: '/currency',
   }
 ];
 

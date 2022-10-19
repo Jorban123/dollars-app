@@ -1,9 +1,9 @@
 import { FormLabel, Input } from '@mui/material';
 import Button from '@mui/material/Button';
 import * as React from 'react';
-import styles from './Window.module.css';
+import styles from './Converter.module.css';
 
-const Window = ({title}: any) => {
+const Converter = ({title}: any) => {
 
     const [query, setQuery] = React.useState('')
     const [fail, setFail] = React.useState(false)
@@ -31,4 +31,4 @@ const Window = ({title}: any) => {
     )
 }
 
-export default Window;
+export default Converter;
