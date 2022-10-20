@@ -18,7 +18,7 @@ const Currency = () => {
         setDefaultCur(e.target.value)
     }
     React.useEffect(() => {
-        axios.get(`https://api.apilayer.com/exchangerates_data/latest?symbols=RUB,USD,KZT&base=${defaultCur}`, {
+        axios.get(`https://api.apilayer.com/exchangerates_data/latest?symbols=RUB,USD,KZT,EUR&base=${defaultCur}`, {
             headers: {
                 apiKey
             }
@@ -26,11 +26,7 @@ const Currency = () => {
             console.log(res.data.rates);
             setCurrencies(res.data.rates)
         })
-        Object.keys(currencies).map((key: string) => {
-            console.log(currencies[key as keyof typeof currencies])
-        })
     }, [defaultCur])
-
 
   return (
     <TableContainer component={Paper} className={styles.container}>
@@ -49,25 +45,11 @@ const Currency = () => {
         <TableHead>
           <TableRow>
             <TableCell>Валюта</TableCell>
-            <TableCell align="right">Calories</TableCell>
+            <TableCell align="right">Стоимость</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-            </TableRow>
-          ))} */}
-          {Object.keys(currencies).map((key: string) => {
-            return (
+          {Object.keys(currencies).map((key: string) => (
             <TableRow
                 key={key}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -78,7 +60,7 @@ const Currency = () => {
                 <TableCell align="right">{currencies[key as keyof typeof currencies]}</TableCell>
             </TableRow>
             )
-          })}
+          )}
         </TableBody>
       </Table>
     </TableContainer>

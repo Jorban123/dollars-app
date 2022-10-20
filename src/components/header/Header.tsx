@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import AdbIcon from '@mui/icons-material/Adb';
 import styles from './header.module.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 const pages = [
   {
     title: 'Конвертер',
@@ -22,7 +22,6 @@ const pages = [
 const Header: React.FC = () => {
   const navigate = useNavigate()
   function onClickButton({id}: any){
-    console.log(id);
     navigate(id)
   }
 
