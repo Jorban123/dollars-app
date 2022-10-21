@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import Table from '@mui/material/Table';
 import { InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import TableBody from '@mui/material/TableBody';
@@ -9,21 +10,26 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import styles from './Currency.module.css';
 import axios from 'axios';
+import { changeCur, selectDefaultCur } from '../../store/slices/defaultCurSlice';
 
 const Currency = () => {
-    const apiKey = 'Ca9ubiwg33JpoQwrPBNOlDC8iqMrWxTw'
-    const [defaultCur, setDefaultCur] = React.useState('RUB')
+    const apiKey = process.env.REACT_APP_API_KEY;
+    console.log(apiKey);
+    
+    const dispatch = useDispatch()
+    const defaultCur = useSelector(selectDefaultCur)
     const [currencies, setCurrencies] = React.useState({})
+
     const handleChange = (e: SelectChangeEvent) => {
-        setDefaultCur(e.target.value)
+        dispatch(changeCur(e.target.value))
     }
+    
     React.useEffect(() => {
         axios.get(`https://api.apilayer.com/exchangerates_data/latest?symbols=RUB,USD,KZT,EUR&base=${defaultCur}`, {
             headers: {
                 apiKey
             }
         }).then(res => {
-            console.log(res.data.rates);
             setCurrencies(res.data.rates)
         })
     }, [defaultCur])
