@@ -6,8 +6,9 @@ type languages = {
 }
 
 const lang: languages = {
-    'ru-RU': 'RUB',
-    'en-US': 'USD',
+    'ru': 'RUB',
+    'en': 'USD',
+    'en-US': 'USD'
 }
 
 export const defaultCurSlice = createSlice({
@@ -16,7 +17,7 @@ export const defaultCurSlice = createSlice({
         value: lang[navigator['language']]
     },
     reducers: {
-      changeCur: (state: any, action: PayloadAction<string>) => {
+      changeCur: (state: {value: string}, action: PayloadAction<string>) => {
         state.value = action.payload
       }
     },
@@ -24,6 +25,6 @@ export const defaultCurSlice = createSlice({
 
 export const { changeCur } = defaultCurSlice.actions
 
-export const selectDefaultCur = (state: any) => state.defaultCur.value
+export const selectDefaultCur = (state: {defaultCur: {value: string}}) => state.defaultCur.value
 
 export default defaultCurSlice.reducer

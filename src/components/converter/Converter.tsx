@@ -5,16 +5,16 @@ import * as React from 'react';
 import styles from './Converter.module.css';
 
 const Converter = ({title}: any) => {
-    const apiKey = 'Ca9ubiwg33JpoQwrPBNOlDC8iqMrWxTw'
-    const [query, setQuery] = React.useState('')
-    const [fail, setFail] = React.useState(false)
+    const apiKey = process.env.REACT_APP_API_KEY;
+    const [query, setQuery] = React.useState('');
+    const [fail, setFail] = React.useState(false);
     const [output, setOutput] = React.useState({
         query: {
             from: '',
             to: '',
-            amount: 0
+            amount: 0,
         },
-        result: 0
+        result: 0,
     })
     let queryChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setQuery(event.target.value);
@@ -38,7 +38,6 @@ const Converter = ({title}: any) => {
         }
 
         const [from, to] = queryWithoutAmount[0].split('in')
-        console.log(from, to);
         
         from && to ?
         axios.get(`https://api.apilayer.com/exchangerates_data/convert?to=${to.trim()}&from=${from.trim()}&amount=${amount}`, {
