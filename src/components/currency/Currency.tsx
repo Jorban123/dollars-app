@@ -14,8 +14,6 @@ import { changeCur, selectDefaultCur } from '../../store/slices/defaultCurSlice'
 
 const Currency = () => {
     const apiKey = process.env.REACT_APP_API_KEY;
-    console.log(apiKey);
-    
     const dispatch = useDispatch()
     const defaultCur = useSelector(selectDefaultCur)
     const [currencies, setCurrencies] = React.useState({})
@@ -32,7 +30,7 @@ const Currency = () => {
         }).then(res => {
             setCurrencies(res.data.rates)
         })
-    }, [defaultCur])
+    }, [defaultCur, apiKey])
 
   return (
     <TableContainer component={Paper} className={styles.container}>
