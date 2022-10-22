@@ -58,7 +58,13 @@ const Converter = ({title}: any) => {
             <h1>{title}</h1>
             <FormLabel>Введите запрос: </FormLabel>
             <Input required value={query} onChange={queryChange} />
-            {fail && <div><h3 className={styles.error}>Запрос должен быть в виде: 15 eur in rub</h3></div>}
+            {fail &&
+            <div>
+                <h3 className={styles.error}>Запрос должен быть в виде: 15 eur in rub</h3>
+                <div>
+                    <h3 className={styles.error}>Поддерживаемые валюты: RUB, EUR, USD, BTC, KZT.</h3>
+                </div>
+            </div>}
             <div className={styles.button}>
                 <Button
                 onClick={onButtonClick}
