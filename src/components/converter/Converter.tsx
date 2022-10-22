@@ -37,7 +37,7 @@ const Converter = ({title}: any) => {
             return;
         }
 
-        const [from, to] = queryWithoutAmount[0].split('in')
+        const [from, to] = queryWithoutAmount[0].split(/\bin\b/i)
         
         from && to ?
         axios.get(`https://api.apilayer.com/exchangerates_data/convert?to=${to.trim()}&from=${from.trim()}&amount=${amount}`, {
