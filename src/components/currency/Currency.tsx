@@ -16,7 +16,12 @@ const Currency = () => {
     const apiKey = process.env.REACT_APP_API_KEY;
     const dispatch = useDispatch()
     const defaultCur = useSelector(selectDefaultCur)
-    const [currencies, setCurrencies] = React.useState({})
+    const [currencies, setCurrencies] = React.useState({
+      RUB: 1,
+      USD: 1,
+      KZT: 1,
+      EUR: 1,
+    })
 
     const handleChange = (e: SelectChangeEvent) => {
         dispatch(changeCur(e.target.value))
@@ -61,7 +66,7 @@ const Currency = () => {
                 <TableCell component="th" scope="row">
                     {key}
                 </TableCell>
-                <TableCell align="right">{currencies[key as keyof typeof currencies]}</TableCell>
+                <TableCell align="right">{(1 / currencies[key as keyof typeof currencies]).toFixed(3)}</TableCell>
             </TableRow>
             )
           )}
